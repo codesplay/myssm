@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../../js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../../../js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div style="padding:0px; margin:0px;">
+ <ul class="breadcrumb" style="  margin:0px; " >
+    	<li><a href="#">学员管理</a></li>
+        <li>学员评价</li>
+    </ul>
+</div>
+<form class="form-inline">
+<div class="row alert alert-info"  style="margin:0px; padding:3px;" >
+
+     <div class="form-group">
+         <label class="" for="activename">主题：</label>
+        <input type="email" class="form-control" id="activename" placeholder="请输入主题">
+      </div>
+
+    <input type="button"   class="btn btn-danger"     value="查询"/>
+    <a  class="btn btn-success"  href="evaluationinfo_add.html">添加评价</a>
+    
+</div>
+<div class="row" style="padding:15px; padding-top:0px; ">
+	<table class="table  table-condensed table-striped">
+    	<tr>
+        	<th>编号</th>
+            <th>学员姓名</th>
+            <th>主题</th>
+            <th>评价内容</th>
+            <th>课程名称</th>
+            <th>教师</th>
+            <th>操作</th>
+        </tr>
+       	<tr>
+        	<td>1001</td>
+            <td>张三</td>
+            <td>上课内容</td>
+            <td>很好啊</td>
+            <td>java基础</td>
+            <td>唐僧</td>
+            <th>
+            <a href="evaluationinfo_update.html">修改</a> 
+            <a href="">删除</a>
+            </th>
+        </tr>   
+                 
+     	                   
+    </table>
+</div>
+</form>
+</body>
+</html>

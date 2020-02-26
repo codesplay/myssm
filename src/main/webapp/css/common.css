@@ -1,0 +1,369 @@
+header{
+	width: 100%;
+	height: 50px;
+	background: #1e1b29;
+	border-bottom: solid 4px red;
+}
+.member_wrap{
+	
+}
+.header_item{
+	overflow: hidden;
+}
+/*.user_menu{*/
+/*	width: 100%;*/
+/*	height: 170px;*/
+/*	padding: 20px 0;*/
+/*	!*background:url(../img/banner_bg.html) repeat;*!*/
+/*}*/
+.header_item{
+	width: 980px;
+	margin: 0 auto;
+}
+.menu_head{
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	border: solid 3px #fff;
+	overflow: hidden;
+}
+.menu_head img{
+	width: 100%;
+	height: 100%;
+}
+.menu_info{
+	width:840px;
+	margin-left: 20px;	
+}
+.info_name{
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: bold;
+	color: #fff;
+}
+.info_name_box{
+	margin-top: 10px;
+}
+.level{
+	font-size: 14px;
+	color: #f60;
+	font-weight: bold;
+}
+.info_desc{
+	margin-top: 10px;
+	font-size: 14px;
+	color: #FFF;
+}
+.banner_menu{
+	width: 980px;
+	height: 50px;
+	margin: 20px auto;
+	background: #fff;
+}
+
+
+.nav_box{
+	margin-top: 50px;
+}
+.nav_box ul {
+	overflow: hidden;
+}
+.nav_box ul li{
+	display: block;
+	padding: 0 20px;
+}
+.nav_box ul li a{
+	color: #fff;
+	font-size: 16px;
+}
+.nav_box ul li a:hover{
+	color: red;
+}
+
+/*.login_wrap{*/
+/*	!*background: url(../img/logo_bg.jpg) no-repeat center;*!*/
+/*	background-size: 100%;*/
+/*}*/
+.login_box{
+	width: 990px;
+	background: #FFFFFF;
+	margin: 0px auto;
+}
+.login_title{
+	font-size: 25px;
+	text-align: center;
+	color: #FF7F50;
+	padding: 15px 0;
+	width: 300px;
+	margin: 0 auto;
+	border-bottom: solid 1px #CCCCCC;
+}
+.form_text_ipt{
+	width: 300px;
+	height: 40px;
+	border: solid 1px #CCCCCC;
+	margin: 20px auto 0 auto;
+	background: #FFFFFF;
+}
+.form_check_ipt{
+	width: 300px;
+	margin:  10px auto;
+	overflow: hidden;
+}
+.form_text_ipt input{
+	width: 290px;
+	height: 30px;
+	margin: 5px;
+	border: none;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 15px;
+	color: #666;
+}
+.check_left label{
+	cursor: pointer;
+}
+.check_left label input{
+	position: relative;
+	top: 2px;
+}
+.form_btn{
+	width: 300px;
+	height: 40px;
+	margin:  10px auto;
+}
+.form_btn button{
+	width: 100%;
+	height: 100%;
+	border: none;
+	color: #FFFFFF;
+	font-size: 14px;
+	background: #FF7F50;
+	cursor: pointer;
+}
+.form_reg_btn{
+	width: 300px;
+	margin: 0 auto;
+	font-size: 14px;
+	color: #666;
+}
+.other_login{
+	overflow: hidden;
+	width: 300px;
+	height: 80px;
+	line-height: 80px;
+	margin: 0px auto;
+}
+.other_left{
+	font-size: 14px;
+	color: #999;
+}
+
+.other_right a{
+	margin:5px;
+	color:#636363;
+}
+
+.other_right a:hover{
+	color:#AEEEEE;
+}
+
+/*header*/
+li,ul{
+	list-style: none;
+}
+em,i{
+	font-style: normal;
+}
+a{
+	text-decoration: none;
+	color: #666;
+}
+a:hover{
+	color: red;
+}
+
+.index_header{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background: #e3e4e5;
+	border-bottom: solid 1px #ddd;
+}
+.index_wrapper{
+	height: 30px;
+	width: 1200px;
+	margin: 0 auto;
+	background: #e3e4e5;
+	color: #999;
+}
+.index_wr{
+	float: right;
+}
+.index_wr > li{
+	float: left;
+}
+.index_lr1{
+	margin-right: 10px;
+}
+li.spacer{
+	width: 1px;
+	height: 12px;
+	margin-top: 9px;
+	padding: 0;
+	background: #ccc;
+	overflow: hidden;
+}
+.index_icon{
+	position: relative;
+}
+.dt{
+	padding: 0 8px;
+}
+.index_regist{
+	color: red;
+}
+.index_cheader{
+	height: 100px;
+	line-height: 100px;
+	width: 1200px;
+	margin: 0 auto;
+}
+.cheader_logo{
+	font-size: 30px;
+	height: 100px;
+	width: 300px;
+	float: left;
+	line-height: 100px;
+	color: #666666;
+
+}
+.cheader_logo img{
+	width: 100px;
+
+	display: inline-block;
+	vertical-align:bottom;
+}
+.logo_w{
+	height: 100px;
+	display: inline-block;
+	line-height: 100px;
+	font-size: 20px;
+}
+.cheader_search{
+	position: relative;
+	float: left;
+	width: 550px;
+	height: 36px;
+	margin: 40px 80px 0;
+	background: red;
+}
+.index_form{
+	height: 36px;
+}
+.index_form input{
+	float: left;
+	width: 460px;
+	height: 24px;
+	line-height: 24px;
+	color: #999;
+	padding: 4px;
+	margin-bottom: 4px;
+	border-width: 2px 0 2px 2px;
+	border-color: #f30213;
+	border-style: solid;
+	outline: 0;
+	font-size: 12px;
+}
+.index_form button{
+	float: left;
+	width: 80px;
+	height: 36px;
+	font-family: tahoma,arial,Microsoft YaHei,Hiragino Sans GB,"\u5b8b\u4f53",sans-serif;
+	background: #f30213;
+	border: none;
+	border-radius: 0;
+	line-height: 1;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+.index_shopping{
+	margin-top: 40px;
+	height: 36px;
+	float: left;
+	border: 1px solid #DFDFDF;
+	background: #F9F9F9;
+	width: 140px;
+}
+.shopping_icon{
+	display: flex;
+	height: 36px;
+	align-items: center;
+	line-height: 36px;
+	padding: 0 28px 0 19px;
+}
+.shopping_icon a{
+	float: left;
+	margin-right: 6px;
+	font-size: 12px;
+	color: #f30213;
+}
+.lefticon{
+	float: left;
+	width: 16px;
+	height: 16px;
+	background: url("../img/shoppingcar.png") no-repeat;
+	background-size: 16px 16px;
+	overflow: hidden;
+}
+
+
+/*footer*/
+.login_header{
+	width: 970px;
+	height: 100px;
+	margin: 0 auto;
+	line-height: 100px;
+	font-size: 30px;
+}
+.login_logo{
+	width: 100px;
+	height: 100px;
+}
+.index_footer{
+	min-width: 1200px;
+	width: 100%;
+	border-top: solid 1px #dedede;
+	background: #eaeaea;
+}
+.footer-2019{
+	margin-top: 20px;
+	color: #777;
+	font-size: 13px;
+	text-align: center;
+}
+.copyright{
+	margin-top: 10px;
+	padding-bottom: 10px;
+	padding: 10px 0;
+	line-height: 22px;
+	color: #999;
+	text-align: center;
+}
+.copyright span,a{
+	margin: 0 10px;
+	color: #999;
+}
+.swiper-slide a{
+	margin: 0;
+}
+/*Çå³ý¸¡¶¯*/
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+/*setmsg*/

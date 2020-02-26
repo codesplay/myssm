@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.min.js"></script>
+</head>
+<script>
+    $(function () {
+        $('.start').click(function () {
+            var a = $('.shuru').val();
+            var m = a.match(/^(.*)_([a-z]+)([0-9]+)$/);
+            $('#result').text(m[3]);
+        });
+    })
+</script>
+<body>
+<input class="shuru" type="text"/><button class="start">匹配</button><div>匹配结果</div><p id="result"></p>
+</body>
+</html>

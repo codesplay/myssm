@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--注解扫描-->
+    <context:component-scan base-package="pers.myssm">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+    
+	<!-- 配置图片文件解析器 -->
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+    	<property name="maxUploadSize" value="104857600"/>
+    	<property name="defaultEncoding" value="utf-8"/>
+    	<property name="maxInMemorySize" value="40960"/>
+	</bean>
+	
+	<!-- <mvc:view-controller path="/" view-name="forward:/"/> -->
+      <!-- 可直接访问-->
+    <mvc:view-controller path="/log" view-name="Jlogin" />
+    <mvc:view-controller path="/reg" view-name="Jreg" />
+    <mvc:view-controller path="/addpage" view-name="User/add" />
+    <mvc:view-controller path="/adlog" view-name="adminlog" />
+    
+    
+    <!--配置静态资源-->
+    <mvc:resources mapping="/css/" location="/css/**"/>
+    <mvc:resources mapping="/img/" location="/img/**"/>
+    <mvc:resources mapping="/js/" location="/js/**"/>
+    <mvc:resources mapping="/layer/" location="/layer/**"/>
+    <mvc:resources mapping="/images/" location="/images/**"/>
+    <mvc:resources mapping="/setmsg/" location="/**"/>
+    
+    
+	<!--处理springmvc无法处理的请求-->
+    <mvc:default-servlet-handler/>
+    
+    <!--支持jsr303 校验 -->
+    <mvc:annotation-driven/>
+</beans>
