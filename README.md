@@ -18,19 +18,4 @@
 ### 待实现
 - 商品评价显示
 - 用户信息编辑界面
-### 组织结构
-├── README.md                   
-├── src                               
-│   └── main   
-│       ├── java  
-│       |     ├── pers.myssm.controller    
-│       |     ├── pers.myssm.service -- 各种业务接口   
-│       |     ├── pers.myssm.serviceimpl -- 接口实现类  
-│       |     ├── pers.myssm.dao -- 持久层  
-│       |     ├── pers.myssm.domain -- 实例  
-│       │     └── pers.myssm.utils -- 工具类        
-│       ├── resources -- spring及springmvc 配置文件  
-│       └── webapp -- jsp页面        
-└── pom.xml  
-
 
