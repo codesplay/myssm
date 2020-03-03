@@ -344,27 +344,21 @@
         <div class="product_comheader"><span>商品评价</span><span style="color: #e4393c;font-size: 12px">全部评价 (<em>${nums}</em>)</span></div>
         <div class="product_comments clearfix">
             <div class="comment-1">
-            <c:if test="${comments == null}">
-            	<div class="comment-item">
-                  	<h1 align="center">暂无评论</h1>
-                </div>
-            </c:if>
-            <c:forEach items="${comments }" var="bean" varStatus="loop">
+            <%-- <c:forEach items="${comments}" var="bean" varStatus="loop">
             	<div class="comment-item">
                     <div class="comment_user">
-                        <img src="../img/user1.jpg" style="height: 25px; width: 25px" alt="西风白水">${username[loop.index]}
+                        <img src="../img/user1.jpg" style="height: 25px; width: 25px" alt="西风白水">${bean.username}
                     </div>
                     <div class="comment_info">
                         <p>${bean.comments}</p>
                     </div>
                 </div>
-            </c:forEach>
+            </c:forEach> --%>
             </div>
             <div class="page_wrapper">
                 <div id="page" class="page"></div>
             </div>
         </div>
-
     </div>
 </div>
 <div class="index_footer">
@@ -387,31 +381,22 @@
 <script type="text/javascript">
     // 4.调用插件
     var pro = ${requestScope.thisproduct.id};
-    var nums = ${requestScope.total};
+    var pages = ${requestScope.pages};
     var box = new CustomPagination('#page', {
-        total: nums,//总页数
+        total: pages,//总页数
         changePage: function (pageNum) {//切换页码成功回调
-            $.ajax({
-            	type:"post",
-            	url:"getcomments?id="+pro+"&page="+pageNum,
-            	data:{'id':pageNum},
-            	cotentType:'application/json;charset=UTF-8',
-            	success:function(data){
-            		$('.comment-1').empty();
-            		for(var key in data){
-            			$('.comment-1').html("<div class='comment-item'><div class='comment_user'>"
-                				+"<img src='../img/user1.jpg' style='height: 25px; width: 25px'>"
-                				+data[key].username
-    							+"</div><div class='comment_info'><p>"+data[key].comments+"</p></div></div>");
-            		}
-            		
-            		
-            	},
-            	error:function(data){
+        	$.post("${pageContext.request.contextPath}/getcomments?pid="+pro+"&pagenum="+pageNum,function(data){
+        		$('.comment-1').empty();
+        		for(var i = 0;i < data.length;i++){
+        			$('.comment-1').append("<div class='comment-item'><div class='comment_user'>"
+            				+"<img src='../img/user1.jpg' style='height: 25px; width: 25px'>"
+            				+data[i].username
+							+"</div><div class='comment_info'><p>"+data[i].comments+"</p></div></div>");
+        		}
+        		if(pages==0){
+            		$('.comment-1').html('<div><h1 align="center">暂无评论</h1></div>');
             	}
-            	
-            	
-            });
+        	});
         }
     });
 

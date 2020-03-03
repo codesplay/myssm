@@ -376,8 +376,10 @@
         </div>
         <div class="cheader_search">
             <div class="index_form">
-                <input type = "text" id="key"/>
-                <button>搜索</button>
+            <form action="toproflow" method="get">
+            	<input type = "text" id="key" name="desc"/>
+                <button type="submit">搜索</button>
+            </form>
             </div>
         </div>
         <div class="index_shopping">

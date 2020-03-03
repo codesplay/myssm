@@ -6,12 +6,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alipay.api.domain.MpPrizeInfoModel;
 import com.alipay.api.domain.OrderRefundInfo;
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 import pers.myssm.domain.Comment;
 import pers.myssm.domain.Order;
@@ -57,17 +60,20 @@ public class CommentController {
 	}
 	
 	//保存评价
-	@RequestMapping("addcomment")
+	@RequestMapping("/addcomment")
 	public String addComment(@RequestParam("order_id")Integer id,Comment comment){
 		commentService.add(comment);
 		//根据订单id修改状态 已评价 ---2
 		orderService.updateStatusById(2, id);
 		return "redirect:/mycomments?id="+comment.getUser_id();
 	}
-
-	@RequestMapping("/getcomments")
+	
 	@ResponseBody
-	public List<Comment> getComments(@RequestParam("id") Integer id){
-		return commentService.getAllByPro(id);
+	@RequestMapping(value="/getcomments",method=RequestMethod.POST)
+	public List<Comment> getComments(@RequestParam("pid") Integer id,@RequestParam("pagenum") Integer pagenum){
+		
+		int page = (pagenum-1)*6;
+		System.out.println("pagenum "+pagenum+ " page "+page);
+		return commentService.getCommentsPage( id,page , 6);
 	}
 }

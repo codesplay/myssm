@@ -5,7 +5,9 @@
   Time: 21:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -159,12 +161,22 @@
     <div class="index_wrapper">
         <ul class="index_wr">
             <li class="index_lr1">
-                <a href="Jlogin.html" class="index_login">你好，请登录</a>&nbsp;&nbsp;<a href="Jreg.html" class="index_regist">免费注册</a>
+               <c:if test="${sessionScope.user.username == null}">
+                	<a href="log" class="index_login">你好，请登录</a>
+                	&nbsp;&nbsp;<a href="reg" class="index_regist">免费注册</a>
+                </c:if>
+                <c:if test="${sessionScope.user.username != null}">
+                	<a href="#" class="index_login" style="color:#ccc;font-size:15px">
+                	${sessionScope.user.username}
+                	<a href="remuser" class="index_login" >退出登录</a>
+                	</a>
+                </c:if> 
             </li>
             <li class="spacer"></li>
             <li class="index_lr2">
-                <div class="dt">
-                    <a target="_blank" href="//order.jd.com/center/list.action">我的订单</a>
+               <div class="dt">
+                <!--  target="_blank"在新的标签打开-->
+                    <a href="myorders">我的订单</a>
                 </div>
             </li>
             <li class="spacer"></li>
@@ -230,79 +242,7 @@
         </div>
         <div class="flow_main">
             <div class="flow_mwrapper">
-                <ul class="clearfix">
-                    <li>
-                        <div class="flow_img">
-                            <a>
-                                <img src="img/panasonic.jpg"/>
-                            </a>
-                        </div>
-                        <p class="flow_pr"><em>￥</em>1800<em>.00</em></p>
-                        <p class="flow_name"><a>夏普(SHARP) 45S6A 45英寸 高清智能网络电视 64位CPU 1G+8G大内存 杜比Audio 智能UI</a></p>
-                        <div class="flow_addcart clearfix">
-                            <a href="javascript:void(0)"><i></i>加入购物车</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flow_img">
-                            <a>
-                                <img src="img/panasonic.jpg"/>
-                            </a>
-                        </div>
-                        <p class="flow_pr"><em>￥</em>1800<em>.00</em></p>
-                        <p class="flow_name"><a>夏普(SHARP) 45S6A 45英寸 高清智能网络电视 64位CPU 1G+8G大内存 杜比Audio 智能UI</a></p>
-                        <div class="flow_addcart clearfix">
-                            <a href="javascript:void(0)"><i></i>加入购物车</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flow_img">
-                            <a>
-                                <img src="img/panasonic.jpg"/>
-                            </a>
-                        </div>
-                        <p class="flow_pr"><em>￥</em>1800<em>.00</em></p>
-                        <p class="flow_name"><a>夏普(SHARP) 45S6A 45英寸 高清智能网络电视 64位CPU 1G+8G大内存 杜比Audio 智能UI</a></p>
-                        <div class="flow_addcart clearfix">
-                            <a href="javascript:void(0)"><i></i>加入购物车</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flow_img">
-                            <a>
-                                <img src="img/panasonic.jpg"/>
-                            </a>
-                        </div>
-                        <p class="flow_pr"><em>￥</em>1800<em>.00</em></p>
-                        <p class="flow_name"><a>夏普(SHARP) 45S6A 45英寸 高清智能网络电视 64位CPU 1G+8G大内存 杜比Audio 智能UI</a></p>
-                        <div class="flow_addcart clearfix">
-                            <a href="javascript:void(0)"><i></i>加入购物车</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flow_img">
-                            <a>
-                                <img src="img/panasonic.jpg"/>
-                            </a>
-                        </div>
-                        <p class="flow_pr"><em>￥</em>1800<em>.00</em></p>
-                        <p class="flow_name"><a>夏普(SHARP) 45S6A 45英寸 高清智能网络电视 64位CPU 1G+8G大内存 杜比Audio 智能UI</a></p>
-                        <div class="flow_addcart clearfix">
-                            <a href="javascript:void(0)"><i></i>加入购物车</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flow_img">
-                            <a>
-                                <img src="img/panasonic.jpg"/>
-                            </a>
-                        </div>
-                        <p class="flow_pr"><em>￥</em>1800<em>.00</em></p>
-                        <p class="flow_name"><a>夏普(SHARP) 45S6A 45英寸 高清智能网络电视 64位CPU 1G+8G大内存 杜比Audio 智能UI</a></p>
-                        <div class="flow_addcart clearfix">
-                            <a href="javascript:void(0)"><i></i>加入购物车</a>
-                        </div>
-                    </li>
+                <ul class="clearfix proflows">
                 </ul>
             </div>
         </div>
@@ -312,10 +252,29 @@
             </div>
             <script type="text/javascript">
                 // 4.调用插件
+                var pages = ${requestScope.nums};
+                var desc = "${requestScope.desc}";
                 var box = new CustomPagination('#page', {
-                    total: 1,//总页数
+                    total: pages,//总页数
                     changePage: function (pageNum) {//切换页码成功回调
-                        console.log('当前页码：'+pageNum)
+                    	var price ="";
+                        $.post("proflows?begin="+pageNum+"&desc="+desc,function(data){
+                        	$('.proflows').empty();
+                        	for(var i = 0;i < data.length;i++){
+                        		if(data[i].sales != 0){
+                        			price = data[i].sales+"<del>"+data[i].price+"</del>";
+                        		}else{
+                        			price = data[i].price;
+                        		}
+                        		
+                        		$('.proflows').append('<li><div class="flow_img">'
+                                        +'<a><img src="images/'+data[i].proimg+'"/></a></div>'
+                                        +'<p class="flow_pr"><em>￥</em>'+price+'</p>'
+                                    	+'<p class="flow_name"><a href="toproduct/'+data[i].id+'">'+data[i].prodesc+'</a></p>'
+                                    	+'<div class="flow_addcart clearfix">'
+                                        +'<a href="toproduct/'+data[i].id+'"><i></i>立即抢购</a></div></li>');
+                        	}
+                        });
                     }
                 });
             </script>

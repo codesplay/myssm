@@ -1,16 +1,21 @@
 package pers.myssm.dao;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.taglibs.standard.lang.jstl.Literal;
+import org.junit.runners.Parameterized.Parameters;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
+
+import com.fasterxml.jackson.databind.annotation.JsonAppend.Prop;
 
 import pers.myssm.domain.Product;
 import pers.myssm.domain.User;
@@ -24,8 +29,14 @@ public interface ProductDao {
 	public List<Product> getAll();
 
 	// 根据title
-	@Select("select * from product where prodesc like '%#{desc}%'")
-	public List<Product> findByName(String desc);
+	@Select("select * from product where prodesc like '%${desc}%'")
+	public List<Product> findByName(@Param("desc")String desc);
+	
+	@Select("select count(id) from product where prodesc like '%${desc}%'")
+	public Long getnums(@Param("desc")String desc);
+	
+	@Select("select * from product where prodesc like '%${desc}%' limit #{begin},#{nums}")
+	public List<Product> findAsPage(@Param("desc")String desc,@Param("begin")Integer begin,@Param("nums")Integer nums); 
 	// 根据品牌
 	@Select("select * from product where probrand = #{brand}")
 	public List<Product> findByBrand(String brand);

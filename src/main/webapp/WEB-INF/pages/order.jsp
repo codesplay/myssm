@@ -412,7 +412,7 @@ a {
 													src="images/${bean.productList[prolist.index].proimg}" />
 											</div>
 											<div class="order_msg">
-												<a class="order_product" href="#">${bean.productList[prolist.index].prodesc }</a>
+												<a class="order_product" href="toproduct/${bean.productList[prolist.index].id}">${bean.productList[prolist.index].prodesc }</a>
 											</div>
 										</div>
 										<div class="order_goodsnum">x${orderbean.buynum }</div>

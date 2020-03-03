@@ -15,8 +15,12 @@ import pers.myssm.domain.Comment;
 @Repository
 public interface CommentDao {
 
-	@Select("select * from tbl_comment where product_id=#{product_id} limit #{begin},#{end}")
-	public List<Comment> findBypage(@Param("product_id")Integer product_id,@Param("begin")Integer begin,@Param("end")Integer end);
+	@Select("select * from tbl_comment where product_id=#{product_id} limit #{begin},#{nums}")
+	public List<Comment> findBypage(@Param("product_id")Integer product_id,@Param("begin")Integer begin,@Param("nums")Integer nums);
+	
+	//获取评论数
+	@Select("select count(id) from tbl_comment where product_id = #{product_id}")
+	public Long getNums(Integer product_id);
 	
 	@Select("select * from tbl_comment where product_id = #{id}")
 	public List<Comment> findAllById(Integer id);

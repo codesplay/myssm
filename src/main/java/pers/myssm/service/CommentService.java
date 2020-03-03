@@ -19,4 +19,6 @@ public interface CommentService {
 	public void editComment(String comment);
 	
 	public List<Comment> getAllByPro(Integer id);
+	//获取评论数
+	public Long getNums(Integer product_id);
 }

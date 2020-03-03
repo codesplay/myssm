@@ -12,11 +12,13 @@ public interface CartService {
 	
 	public void delCate(Integer id);
 	
-	public void updateCate(Cart cart);
+	public void updateCart(Cart cart);
 	
 	public void addCate(Cart cart);
 	
 	public List<Cart> getAllByUser(Integer id);
 	
 	public Cart getCartById(Integer id);
+	
+	public Cart getCartByUP(Integer user_id,Integer product_id);
 }

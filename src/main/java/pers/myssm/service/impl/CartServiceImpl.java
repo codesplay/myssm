@@ -21,18 +21,15 @@ public class CartServiceImpl implements CartService {
 		return cartDao.findAll();
 	}
 
-	@Override
 	public void delCate(Integer id) {
 
 		cartDao.delCart(id);
 	}
 
-	@Override
-	public void updateCate(Cart cart) {
+	public void updateCart(Cart cart) {
 		cartDao.updateCart(cart);
 	}
 
-	@Override
 	public void addCate(Cart cart) {
 		cartDao.addCart(cart);
 		
@@ -46,5 +43,10 @@ public class CartServiceImpl implements CartService {
 	public Cart getCartById(Integer id) {
 		return cartDao.findCartById(id);
 	}
+
+	public Cart getCartByUP(Integer user_id, Integer product_id) {
+		return cartDao.findCartByUP(user_id, product_id);
+	}
+
 
 }

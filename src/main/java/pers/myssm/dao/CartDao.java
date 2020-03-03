@@ -29,4 +29,8 @@ public interface CartDao {
 	
 	@Select("select * from tbl_cart where id = #{id}")
 	public Cart findCartById(Integer id);
+	
+	@Select("select * from tbl_cart where user_id = #{arg0} and product_id = #{arg1}")
+	public Cart findCartByUP(Integer user_id,Integer product_id);
+	
 }

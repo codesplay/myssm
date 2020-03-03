@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pers.myssm.domain.Cart;
@@ -49,14 +50,35 @@ public class CartController {
 			return "Jlogin";
 		}
 	}
+	
+	//用户界面
+	@RequestMapping("/delcart")
+	public String delCart(@RequestParam("id")Integer id) {
+		System.out.println("删除购物车");
+		cartServiceImpl.delCate(id);
+		return "redirect:/mycart";
+	}
 
 	@RequestMapping("/addcart")
 	public String addCart(Cart cart) {
 		if(cart.getUser_id() == null){
 			return "Jlogin";
 		}else{
-			cart.setBuymoney(cart.getBuymoney()*cart.getNum());
-			cartServiceImpl.addCate(cart);
+			System.out.println("userid"+cart.getUser_id()+"product_id"+cart.getProduct_id());
+			Cart cart2 = cartServiceImpl.getCartByUP(cart.getUser_id(), cart.getProduct_id());
+			if( cart2 == null){
+				System.out.println("尚未购买此物品");
+				cart.setBuymoney(cart.getBuymoney()*cart.getNum());
+				cartServiceImpl.addCate(cart);
+			}else {
+				System.out.println("商品已在购物车中");
+				Double money = cart2.getBuymoney()+cart.getBuymoney()*cart.getNum();
+				cart2.setBuymoney(money);
+				int num = cart2.getNum()+cart.getNum();
+				cart2.setNum(num);
+				System.out.println("cartid"+cart.getId());
+				cartServiceImpl.updateCart(cart2);
+			}
 			return "redirect:/mycart";
 		}
 	}
@@ -86,6 +108,7 @@ public class CartController {
 		return "redirect:/carts";
 	}
 	
+	
 	//修改
 	@RequestMapping("/editcartpage")
 	public String editpage(@RequestParam("id") Integer id){
@@ -110,14 +133,10 @@ public class CartController {
 			cart.setBuymoney(price*(cart.getNum()));
 		}
 		System.out.println("修改"+cart.toString());
-		cartServiceImpl.updateCate(cart);
+		cartServiceImpl.updateCart(cart);
 		return "redirect:/carts";
 	}
 	
 	
-	//用户界面
-	public String delCart(Integer id) {
-		cartServiceImpl.delCate(id);
-		return "redirect:/mycart";
-	}
+
 }

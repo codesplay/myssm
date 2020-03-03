@@ -9,6 +9,9 @@ import pers.myssm.domain.Product;
 
 public interface ProductService {
 
+	public Long getNums(String desc);
+	
+	public List<Product> getAsPage(String desc,Integer begin,Integer nums);
 	
 	// 查
 	public List<Product> getProductByName(String username);

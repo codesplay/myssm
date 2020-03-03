@@ -18,13 +18,9 @@ package pers.myssm.controller;
 
 
 import java.io.IOException;
-import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +30,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import pers.myssm.domain.Comment;
@@ -43,6 +39,7 @@ import pers.myssm.service.impl.CateServiceImpl;
 import pers.myssm.service.impl.CommentServiceImpl;
 import pers.myssm.service.impl.ProductServiceImpl;
 import pers.myssm.service.impl.UserServiceImpl;
+import pers.myssm.utils.Page;
 import pers.myssm.utils.UploadTool;
 
 
@@ -60,6 +57,28 @@ public class ProductController {
 	
 	@Autowired
 	private UserServiceImpl userService;
+	
+	
+	/**
+	 * 商品瀑布流
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/toproflow")
+	public String getproflow(@RequestParam("desc") String desc,Map<String, Object> map){
+		map.put("nums", Page.getPages(productSerivce.getNums(desc), 16));
+		System.out.println("获取nums"+productSerivce.getNums(desc));
+		map.put("desc", desc);
+		System.out.println("获取搜索商品名称");
+		return "productsflow";
+	}
+	
+	@RequestMapping("/proflows")
+	@ResponseBody
+	public List<Product> getProducts(@RequestParam("desc") String desc,@RequestParam(value="begin",required=false) Integer begin){
+		System.out.println("desc"+desc+"begin:"+begin);
+		return productSerivce.getAsPage(desc, (begin-1)*16, 16);
+	}
 	
 	@RequestMapping("/products")
 	public String getList(Map<String, Object> map){
@@ -85,7 +104,7 @@ public class ProductController {
 	public void getProduct(@RequestParam(value="id",required=false) Integer id,Map<String, Object> map) {
 		if(id != null){
 			map.put("editproduct", productSerivce.getProducById(id));
-			System.out.println("edituser"+productSerivce.getProducById(id).toString());
+			System.out.println("productControllermodelattr"+productSerivce.getProducById(id).toString());
 		}
 	}
 	
@@ -166,12 +185,15 @@ public class ProductController {
 	@RequestMapping("/toproduct/{id}")
 	public String getproPage(@PathVariable("id") Integer id,Map<String, Object> map){
 		map.put("thisproduct", productSerivce.getProducById(id));
-		List<Comment> commentList = commentService.getAllByPro(id);
+		Long nums = commentService.getNums(id);
+		Long pages = Page.getPages(nums, 6);
+		List<Comment> commentList = commentService.getCommentsPage(id, 0, 6);
+		System.out.println(commentList);
 		List<String> username = new ArrayList<String>();
 		for(Comment co : commentList){
 			username.add(userService.getUserNameById(co.getUser_id()));
 		}
-		
+		map.put("pages", pages);
 		map.put("total", commentList.size()/1);
 		map.put("nums", commentList.size());
 		map.put("comments",commentList);

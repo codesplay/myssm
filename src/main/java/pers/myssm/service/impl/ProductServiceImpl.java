@@ -16,8 +16,8 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao productDao;
 
-	public List<Product> getProductByName(String username) {
-		return productDao.findByName(username);
+	public List<Product> getProductByName(String desc) {
+		return productDao.findByName(desc);
 	}
 
 	@Override
@@ -77,6 +77,15 @@ public class ProductServiceImpl implements ProductService {
 	
 	public Double getSalesById(Integer id){
 		return productDao.findSalesById(id);
+	}
+
+	public Long getNums(String desc) {
+		return productDao.getnums(desc);
+	}
+
+	public List<Product> getAsPage(String desc, Integer begin, Integer nums) {
+//		System.out.println("nums:"+nums);
+		return productDao.findAsPage(desc, begin, nums);
 	}
 	
 

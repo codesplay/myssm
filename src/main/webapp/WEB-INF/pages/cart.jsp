@@ -280,7 +280,7 @@ html body {
 				<li class="spacer"></li>
 				<li class="index_lr2">
 					<div class="dt">
-						<a target="_blank" href="myorders">我的订单</a>
+						<a href="myorders">我的订单</a>
 					</div>
 				</li>
 				<li class="spacer"></li>
@@ -300,8 +300,10 @@ html body {
 			</div>
 			<div class="cheader_search cart_search" style="float: right;">
 				<div class="index_form cart_form">
-					<input type="text" id="key" />
-					<button>搜索</button>
+					<form action="toproflow" method="get">
+            			<input type = "text" id="key" name="desc"/>
+                		<button type="submit">搜索</button>
+            		</form>
 				</div>
 			</div>
 		</div>
@@ -351,18 +353,15 @@ html body {
 											<div class="items_nums cell clearfix"
 												style="margin-top: 20px">
 												<div>
-													<a href="javascript:;" class="cart_subnum cartnum reduce"
-														onclick="reduce('#buy_num${loop.count}')">-</a> <input
-														class="product_buynum cart_buynum" id="buy_num${loop.count}"
-														data-max="200" value='${bean.num}'/> <a
-														href="javascript:;" class="cart_addnum cartnum"
-														onclick="add('#buy_num${loop.count}')">+</a>
+													<a href="javascript:void(0);" class="cart_subnum cartnum reduce" onclick="reduce('#buy_num${loop.count}')">-</a> 
+													<input class="product_buynum cart_buynum" id="buy_num${loop.count}" data-max="200" value='${bean.num}'/> 
+													<a href="javascript:void(0);" class="cart_addnum cartnum" onclick="add('#buy_num${loop.count}')">+</a>
 												</div>
 											</div>
 											<div class="items_priceall cell clearfix" id="buymoney_${loop.count}" value="${bean.buymoney}">￥${bean.buymoney}</div>
 											<div class="items_op"
 												style="float: right; margin-top: 20px; padding-right: 24px">
-												<a>删除</a>
+												<a href="delcart?id=${bean.id}">删除</a>
 											</div>
 										</div>
 									</div>

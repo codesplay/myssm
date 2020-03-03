@@ -86,53 +86,50 @@ public class OrderController {
 			// 保存订单商品
 			List<Product> productList = new ArrayList<Product>();
 			/**
-			 * 1、获取订单里面购买商品订单号 2、便利获取的用户订单，通过判断订单号是否相同判断是否同一个订单
-			 * 
+			 * 1、获取订单里面购买商品订单号 2、遍历获取的用户订单，通过判断订单号是否相同判断是否同一个订单
 			 */
 			Long numLong = list.get(0).getOrdernum();
+			/**
+			 * list_nums 记录相同订单号的个数
+			 * index 当前遍历次数
+			 */
 			int list_nums = 0, index = 0;
 			System.out.println("形成订单=========");
+			//遍历用户的订单
 			for (Order order : list) {
-				++list_nums;
+				++index;
+				//判断订单号是否相同
 				if ((order.getOrdernum()).longValue() != numLong.longValue()) {
-					// 保存订单
-					orderList.add(new OrderList(index, orderList1, productList));
+					// 如果不同 将已经获得的同一订单号的订单保存
+					//OrderList(订单个数,订单列表,商品列表)
+					orderList.add(new OrderList(list_nums, orderList1, productList));
 					// 设置新订单号
 					numLong = order.getOrdernum();
-					// 清空旧数据
-					index = 1;
+					// 重置当前相同订单号的数量
+					list_nums = 1;
 					orderList1 = new ArrayList<Order>();
 					productList = new ArrayList<Product>();
 					// 添加新订单
 					orderList1.add(order);
 					productList.add(productService.getProducById(order.getProduct_id()));
+					//如果当前便利个数与订单总数相同、说明这是最后一个订单需要保存
 					if (list_nums == list.size()) {
 						orderList.add(new OrderList(1, orderList1, productList));
 					}
-
+				//如果相同添加到订单列表
 				} else {
-					++index;
-					// 保存同一订单
+					++list_nums;
+					// 保存同一订单号的订单
 					orderList1.add(order);
 					// 保存订单中的product
 					productList.add(productService.getProducById(order.getProduct_id()));
 				}
 			}
-			if (list.size() == index) {
-				orderList.add(new OrderList(index, orderList1, productList));
+			//如果订单总数与订单号相同的订单个数相同、则说明只有一个订单，保存
+			if (list.size() == list_nums) {
+				orderList.add(new OrderList(list_nums, orderList1, productList));
 			}
-
-			// List<Product> products = new ArrayList<Product>();
-			// List<Order> list = orderService.getAll();
-			// List<String> nameList = new ArrayList<String>();
-			// for(Order order:list){
-			// products.add(productService.getProducById(order.getProduct_id()));
-			// nameList.add(userService.getUserNameById(order.getUser_id()));
-			// }
-			// map.put("products",products);
-			// map.put("orders", list);
-			// map.put("username", nameList);
-			System.out.println(orderList.toString());
+			System.out.println("获取订单"+orderList.toString());
 			map.put("OrderList", orderList);
 			if (error != null) {
 				map.put("error", error);

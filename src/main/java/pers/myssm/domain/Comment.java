@@ -7,7 +7,6 @@ public class Comment {
 	private String comments;
 	private String username;
 	
-	
 	public String getUsername() {
 		return username;
 	}
