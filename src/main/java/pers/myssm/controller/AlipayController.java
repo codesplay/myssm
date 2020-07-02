@@ -45,7 +45,7 @@ public class AlipayController {
 	// 返回格式
 	public static String FORMAT = "json";
 	// 支付宝公钥
-	public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApiRZZ5ztLlHvWlBCBUgvLfnF+Hb3TH8fFUy1O4UBOjeSRaXnLAlEPayoQ2q6UCiEFOyNHbvrvS3G9LO2GgE8M9nYOXA6gr4+uQCRstMKZygv309Eb/2caGb4EG/f8YeFk+NYu1uC/FKHqxQbLIMPecIjHyKz2h/ppgHcmTJlVPncRlcMRAvkK5SBvIiwuPCRUAYOzVvWI1z/CAF9KnCDbw8sj2rVkRBWaHkhjSXPPiJf77RFHsiWO6YTG5XP38md6obSiTXomVD5iCrbQIIfbrVfziyr0+EDZTwrsFcb1rSINgPVYXkB5XCzLPye74b3Bp4ryuLtpuNTwokefhdERwIDAQAB";
+	public static String ALIPAY_PUBLIC_KEY = "";
 	// 日志记录目录
 	public static String log_path = "/log";
 	// RSA2
